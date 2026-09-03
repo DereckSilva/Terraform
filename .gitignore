@@ -1,0 +1,8 @@
+.terraform
+.terraform_bk*
+terraform.tfstate*
+tf.plan
+variables.tf
+.env
+.vscode
+.terraform.lock.hcl
