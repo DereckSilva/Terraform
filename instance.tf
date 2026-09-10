@@ -47,7 +47,7 @@ resource "oci_core_instance" "instancia_oci" {
     source_id = data.oci_core_images.image_ubuntu.images[0].id
   }
 
-  metadata = each.value.ssh ? {
+  metadata = {
     "ssh_authorized_keys" = file("~/.ssh/oci_terraform_learn.pub")
-  } : {}
+  }
 }
