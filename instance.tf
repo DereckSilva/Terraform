@@ -3,7 +3,6 @@ locals {
     "publica" = {
       subnet_id = oci_core_subnet.subnet_publica.id
       assign_public_ip = true
-      display_name = "instancia_publica"
       ssh = true
       display_name = "instancia-publica"
     }
@@ -11,7 +10,6 @@ locals {
     "privada" = {
       subnet_id = oci_core_subnet.subnet_privada.id
       assign_public_ip = false
-      display_name = "instancia_privada"
       ssh = false
       display_name = "instancia-privada"
     }

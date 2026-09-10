@@ -1,4 +1,8 @@
 # REFAZER ARQUIVO PARA ELIMINAR DUPLICIDADES
+import {
+  to = oci_core_subnet.subnet_privada
+  id = var.id_subnt_privada
+}
 
 resource "oci_core_subnet" "subnet_privada" {
   availability_domain = var.availability_domain_sp
@@ -10,6 +14,7 @@ resource "oci_core_subnet" "subnet_privada" {
   dhcp_options_id = oci_core_vcn.vcn_internal.default_dhcp_options_id
   route_table_id = oci_core_route_table.route_table_privada_nat.id # alterar esse route table para usar route table para privada (NAT GATEWAY)
   prohibit_public_ip_on_vnic = true # as instâncias na subnet não vão ter IP's públicos
+  security_list_ids = [ oci_core_security_list.lista_seguranca_privada.id ]
 }
 
 resource "oci_core_subnet" "subnet_publica" {
