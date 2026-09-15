@@ -5,7 +5,7 @@ import {
 
 resource "oci_core_route_table" "route_table_privada_nat" {
   compartment_id = var.ocid_compartment
-  vcn_id = oci_core_vcn.vcn_internal.id
+  vcn_id = var.id_vcn
   display_name = "RouteTablePrivada"
   route_rules {
     destination = "0.0.0.0/0"
@@ -16,7 +16,7 @@ resource "oci_core_route_table" "route_table_privada_nat" {
 
 resource "oci_core_route_table" "route_table_publica_igw" {
   compartment_id = var.ocid_compartment
-  vcn_id = oci_core_vcn.vcn_internal.id
+  vcn_id = var.id_vcn
   display_name = "RouteTablePublica"
   route_rules {
     destination = "0.0.0.0/0"

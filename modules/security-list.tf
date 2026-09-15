@@ -5,7 +5,7 @@ import {
 
 resource "oci_core_security_list" "lista_seguranca_publica" {
   compartment_id = var.ocid_compartment
-  vcn_id = oci_core_vcn.vcn_internal.id
+  vcn_id = var.id_vcn
   display_name = "lista_seguranca_publica"
 
   ingress_security_rules {
@@ -72,7 +72,7 @@ resource "oci_core_security_list" "lista_seguranca_publica" {
 
 resource "oci_core_security_list" "lista_seguranca_privada" {
   compartment_id = var.ocid_compartment
-  vcn_id = oci_core_vcn.vcn_internal.id
+  vcn_id = var.id_vcn
   display_name = "lista_seguranca_privada"
 
   ingress_security_rules {
