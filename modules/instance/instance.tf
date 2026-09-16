@@ -1,14 +1,14 @@
 locals {
   instancias = {
     "publica" = {
-      subnet_id = oci_core_subnet.subnet_publica.id
+      subnet_id = var.subnet_public_id
       assign_public_ip = true
       ssh = true
       display_name = "instancia-publica"
     }
 
     "privada" = {
-      subnet_id = oci_core_subnet.subnet_privada.id
+      subnet_id = var.subnet_private_id
       assign_public_ip = false
       ssh = false
       display_name = "instancia-privada"

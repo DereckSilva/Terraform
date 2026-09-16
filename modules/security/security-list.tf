@@ -1,8 +1,3 @@
-import {
-  to = oci_core_security_list.lista_seguranca_publica
-  id = var.id_security_list
-}
-
 resource "oci_core_security_list" "lista_seguranca_publica" {
   compartment_id = var.ocid_compartment
   vcn_id = var.id_vcn
