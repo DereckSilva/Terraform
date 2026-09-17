@@ -51,3 +51,18 @@ module "subnets" {
   route_table_publica_id = module.routing.route_table_publica_igw
   route_table_private_id = module.routing.route_table_privada_nat
 }
+
+module "cluster" {
+  source = "./modules/cluster"
+
+  compartment_id = var.ocid_compartment
+  id_vcn = module.vcn.vcn_id
+  k8s_version = "1.36.2"
+}
+
+module "worker" {
+  source = "./modules/workers"
+
+  cluster_id = module.cluster.cluster_id
+  compartment_id = var.ocid_compartment
+}
