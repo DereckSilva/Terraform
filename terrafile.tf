@@ -11,6 +11,8 @@ module "instance" {
   availability_domain_sp = var.availability_domain_sp
   subnet_private_id = module.subnets.subnet_privada_id
   subnet_public_id = module.subnets.subnet_publica_id
+  nsgIdPrivada = module.network.nsg_privada_id
+  nsgIdPublica = module.network.nsg_publica_id
 }
 
 module "gateway" {
@@ -65,4 +67,18 @@ module "worker" {
 
   cluster_id = module.cluster.cluster_id
   compartment_id = var.ocid_compartment
+}
+
+module "network" {
+  source = "./modules/network"
+
+  vcn_id = module.vcn.vcn_id
+  compartment_id = var.ocid_compartment
+}
+
+module "network_rules" {
+  source = "./modules/network-rules"
+
+  nsg_privada_id = module.network.nsg_privada_id
+  nsg_publica_id = module.network.nsg_publica_id
 }

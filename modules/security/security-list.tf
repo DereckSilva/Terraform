@@ -76,8 +76,8 @@ resource "oci_core_security_list" "lista_seguranca_privada" {
     source_type = "CIDR_BLOCK"
 
     tcp_options {
-      min = 22 # corrigir com a atriuição da chave ssh para a instancia privada
-      max = 22 # corrigir com a atriuição da chave ssh para a instancia privada
+      min = 22
+      max = 22
     }
   }
 

@@ -5,6 +5,7 @@ locals {
       assign_public_ip = true
       ssh = true
       display_name = "instancia-publica"
+      nsg_ids = [ var.nsgIdPublica ]
     }
 
     "privada" = {
@@ -12,6 +13,7 @@ locals {
       assign_public_ip = false
       ssh = false
       display_name = "instancia-privada"
+      nsg_ids = [ var.nsgIdPrivada ]
     }
   }
 
@@ -40,6 +42,7 @@ resource "oci_core_instance" "instancia_oci" {
     subnet_id = each.value.subnet_id
     assign_public_ip = each.value.assign_public_ip
     display_name = each.value.display_name
+    nsg_ids = each.value.nsg_ids
   }
 
   source_details {
