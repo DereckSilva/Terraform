@@ -1,11 +1,11 @@
 resource "oci_core_security_list" "lista_seguranca_publica" {
   compartment_id = var.ocid_compartment
-  vcn_id = var.id_vcn
-  display_name = "lista_seguranca_publica"
+  vcn_id         = var.id_vcn
+  display_name   = "lista_seguranca_publica"
 
   ingress_security_rules {
-    protocol = "6"
-    source = "0.0.0.0/0"
+    protocol    = "6"
+    source      = "0.0.0.0/0"
     source_type = "CIDR_BLOCK"
 
     tcp_options {
@@ -13,10 +13,10 @@ resource "oci_core_security_list" "lista_seguranca_publica" {
       max = 22
     }
   }
-  
+
   ingress_security_rules {
-    protocol = "1"
-    source = "10.0.0.0/16"
+    protocol    = "1"
+    source      = "10.0.0.0/16"
     source_type = "CIDR_BLOCK"
 
     icmp_options {
@@ -26,8 +26,8 @@ resource "oci_core_security_list" "lista_seguranca_publica" {
   }
 
   ingress_security_rules {
-    protocol = "1"
-    source = "0.0.0.0/0"
+    protocol    = "1"
+    source      = "0.0.0.0/0"
     source_type = "CIDR_BLOCK"
 
     icmp_options {
@@ -37,8 +37,8 @@ resource "oci_core_security_list" "lista_seguranca_publica" {
   }
 
   ingress_security_rules {
-    protocol = "1"
-    source = "0.0.0.0/0"
+    protocol    = "1"
+    source      = "0.0.0.0/0"
     source_type = "CIDR_BLOCK"
 
     icmp_options {
@@ -48,8 +48,8 @@ resource "oci_core_security_list" "lista_seguranca_publica" {
   }
 
   egress_security_rules {
-    protocol = "6"
-    destination = "10.0.1.0/24"
+    protocol         = "6"
+    destination      = "10.0.5.0/24"
     destination_type = "CIDR_BLOCK"
 
     tcp_options {
@@ -59,20 +59,20 @@ resource "oci_core_security_list" "lista_seguranca_publica" {
   }
 
   egress_security_rules {
-    protocol = "all"
-    destination = "0.0.0.0/0"
+    protocol         = "all"
+    destination      = "0.0.0.0/0"
     destination_type = "CIDR_BLOCK"
   }
 }
 
 resource "oci_core_security_list" "lista_seguranca_privada" {
   compartment_id = var.ocid_compartment
-  vcn_id = var.id_vcn
-  display_name = "lista_seguranca_privada"
+  vcn_id         = var.id_vcn
+  display_name   = "lista_seguranca_privada"
 
   ingress_security_rules {
-    protocol = "6"
-    source = "10.0.5.0/24"
+    protocol    = "6"
+    source      = "10.0.1.0/24"
     source_type = "CIDR_BLOCK"
 
     tcp_options {
@@ -82,8 +82,8 @@ resource "oci_core_security_list" "lista_seguranca_privada" {
   }
 
   ingress_security_rules {
-    protocol = "1"
-    source = "10.0.5.0/24"
+    protocol    = "1"
+    source      = "10.0.1.0/24"
     source_type = "CIDR_BLOCK"
 
     icmp_options {
@@ -92,7 +92,7 @@ resource "oci_core_security_list" "lista_seguranca_privada" {
     }
   }
   egress_security_rules {
-    protocol = "all"
+    protocol    = "all"
     destination = "0.0.0.0/0"
   }
 }

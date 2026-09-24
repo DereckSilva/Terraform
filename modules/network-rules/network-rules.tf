@@ -24,6 +24,8 @@ resource "oci_core_network_security_group_security_rule" "network-sec-rule-priv-
       max = 1234
     }
   }
+
+  
 }
 
 resource "oci_core_network_security_group_security_rule" "network-sec-rule-priv-e" {
