@@ -20,8 +20,6 @@ module "gateway" {
 module "routing" {
   source = "./modules/routing"
 
-
-
   ocid_compartment       = module.compartment.compartment_dev
   availability_domain_sp = var.availability_domain_sp
   id_vcn                 = module.vcn.vcn_id
@@ -34,6 +32,7 @@ module "security" {
 
   id_vcn           = module.vcn.vcn_id
   ocid_compartment = module.compartment.compartment_dev
+  ipLocal          = var.ipLocal
 }
 
 module "subnets" {
@@ -54,16 +53,17 @@ module "cluster" {
 
   compartment_id = module.compartment.compartment_dev
   id_vcn         = module.vcn.vcn_id
-  k8s_version    = "v1.36.2"
+  k8s_version    = "v1.36.4"
   subnet_id      = module.subnets.subnet_publica_id
 }
 
 module "worker" {
-  source = "./modules/workers"
+  source     = "./modules/workers"
+  depends_on = [module.tag]
 
   cluster_id             = module.cluster.cluster_id
   compartment_id         = module.compartment.compartment_dev
-  k8s_version            = "v1.36.2"
+  k8s_version            = "v1.36.4"
   subnet_id              = module.subnets.subnet_privada_id
   availability_domain_sp = var.availability_domain_sp
   nsg_id                 = module.network.nsg_privada_id
@@ -81,4 +81,10 @@ module "network_rules" {
 
   nsg_privada_id = module.network.nsg_privada_id
   nsg_publica_id = module.network.nsg_publica_id
+}
+
+module "tag" {
+  source = "./modules/tag"
+
+  ocid_compartment = module.compartment.compartment_dev
 }

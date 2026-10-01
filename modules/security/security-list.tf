@@ -47,6 +47,39 @@ resource "oci_core_security_list" "lista_seguranca_publica" {
     }
   }
 
+  ingress_security_rules {
+    protocol    = "6"
+    source      = var.ipLocal
+    source_type = "CIDR_BLOCK"
+
+    tcp_options {
+      min = 6443
+      max = 6443
+    }
+  }
+
+  ingress_security_rules {
+    protocol    = "6"
+    source      = "10.0.5.0/24"
+    source_type = "CIDR_BLOCK"
+
+    tcp_options {
+      min = 6443
+      max = 6443
+    }
+  }
+
+  ingress_security_rules {
+    protocol    = "6"
+    source      = "10.0.5.0/24"
+    source_type = "CIDR_BLOCK"
+
+    tcp_options {
+      min = 12250
+      max = 12250
+    }
+  }
+
   egress_security_rules {
     protocol         = "6"
     destination      = "10.0.5.0/24"
@@ -71,6 +104,13 @@ resource "oci_core_security_list" "lista_seguranca_privada" {
   display_name   = "lista_seguranca_privada"
 
   ingress_security_rules {
+    protocol    = "all"
+    source      = "10.0.5.0/24"
+    source_type = "CIDR_BLOCK"
+  }
+
+
+  ingress_security_rules {
     protocol    = "6"
     source      = "10.0.1.0/24"
     source_type = "CIDR_BLOCK"
@@ -91,6 +131,18 @@ resource "oci_core_security_list" "lista_seguranca_privada" {
       type = 8
     }
   }
+
+  ingress_security_rules {
+    protocol    = "6"
+    source      = "10.0.1.0/24"
+    source_type = "CIDR_BLOCK"
+
+    tcp_options {
+      min = 10250
+      max = 10250
+    }
+  }
+
   egress_security_rules {
     protocol    = "all"
     destination = "0.0.0.0/0"

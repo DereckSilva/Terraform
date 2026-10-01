@@ -18,7 +18,7 @@ resource "oci_containerengine_node_pool" "workers-flex" {
 
   node_shape = local.shapeF
 
-  defined_tags  = { "enviroment" = "development", "namespace" = "teste-estudo" }
+  defined_tags  = { "Governanca.Ambiente" = "Estudos" }
   freeform_tags = { "type-vm" = "flex" }
 
   node_shape_config {
@@ -47,5 +47,4 @@ resource "oci_containerengine_node_pool" "workers-flex" {
   }
 
   ssh_public_key = file("~/.ssh/oci_terraform_learn.pub")
-
 }

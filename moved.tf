@@ -9,11 +9,6 @@ moved {
 }
 
 moved {
-  from = oci_core_instance.instancia_oci
-  to   = module.instance.oci_core_instance.instancia_oci
-}
-
-moved {
   from = oci_core_security_list.lista_seguranca_publica
   to   = module.security.oci_core_security_list.lista_seguranca_publica
 }

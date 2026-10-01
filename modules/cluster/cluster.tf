@@ -1,4 +1,3 @@
-# não foi aplicado na nuvem
 resource "oci_containerengine_cluster" "cluster_estudo" {
   name               = "ContainerEstudo"
   compartment_id     = var.compartment_id
@@ -10,7 +9,7 @@ resource "oci_containerengine_cluster" "cluster_estudo" {
     cni_type = "OCI_VCN_IP_NATIVE"
   }
   endpoint_config {
-    is_public_ip_enabled = false
+    is_public_ip_enabled = true
     subnet_id            = var.subnet_id
   }
 }
