@@ -69,17 +69,6 @@ resource "oci_core_security_list" "lista_seguranca_publica" {
     }
   }
 
-  ingress_security_rules {
-    protocol    = "6"
-    source      = "10.0.5.0/24"
-    source_type = "CIDR_BLOCK"
-
-    tcp_options {
-      min = 12250
-      max = 12250
-    }
-  }
-
   egress_security_rules {
     protocol         = "6"
     destination      = "10.0.5.0/24"

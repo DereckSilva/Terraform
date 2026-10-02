@@ -26,7 +26,7 @@ resource "oci_core_subnet" "subnet" {
 
   for_each = local.subnets
 
-  # availability_domain        = var.availability_domain_sp # removendo esse cara faz com que a infra seja multi-ad pois a subnet se torna regional
+  # availability_domain        = var.availability_domain_sp ---> removendo esse cara faz com que a infra seja multi-ad pois a subnet se torna regional
   cidr_block                 = each.value.cidr_block
   vcn_id                     = var.id_vcn
   compartment_id             = var.ocid_compartment

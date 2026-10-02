@@ -48,27 +48,6 @@ module "subnets" {
   route_table_private_id   = module.routing.route_table_privada_nat
 }
 
-module "cluster" {
-  source = "./modules/cluster"
-
-  compartment_id = module.compartment.compartment_dev
-  id_vcn         = module.vcn.vcn_id
-  k8s_version    = "v1.36.4"
-  subnet_id      = module.subnets.subnet_publica_id
-}
-
-module "worker" {
-  source     = "./modules/workers"
-  depends_on = [module.tag]
-
-  cluster_id             = module.cluster.cluster_id
-  compartment_id         = module.compartment.compartment_dev
-  k8s_version            = "v1.36.4"
-  subnet_id              = module.subnets.subnet_privada_id
-  availability_domain_sp = var.availability_domain_sp
-  nsg_id                 = module.network.nsg_privada_id
-}
-
 module "network" {
   source = "./modules/network"
 
