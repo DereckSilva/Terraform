@@ -4,6 +4,16 @@ module "vcn" {
   ocid_compartment = module.compartment.compartment_dev
 }
 
+module "instance" {
+  source = "./modules/instances"
+
+  ocid_compartment       = module.compartment.compartment_dev
+  availability_domain_sp = var.availability_domain_sp
+  subnet_id              = module.subnets.subnet_privada_id
+  nsg_ids                = module.network.nsg_privada_id
+}
+
+
 module "compartment" {
   source = "./modules/compartment"
 
