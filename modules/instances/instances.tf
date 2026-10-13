@@ -1,19 +1,19 @@
 locals {
   instancias = {
-    "servidor" = {
-      display_name = "instancia-privada-control-plane"
+    "instancia-front" = {
+      display_name = "instancia-front"
     }
-    "agente" = {
-      display_name = "instancia-privada-worker"
+    "instancia-back" = {
+      display_name = "instancia-back"
     }
   }
-  shape = "VM.Standard.A1.Flex"
+  shape = "VM.Standard.E2.1.Micro"
 }
 
 data "oci_core_images" "image_ubuntu" {
   compartment_id           = var.ocid_compartment
   operating_system         = "Canonical Ubuntu"
-  operating_system_version = "20.04"
+  operating_system_version = "22.04"
   shape                    = local.shape
   sort_by                  = "TIMECREATED"
   sort_order               = "DESC"
@@ -38,11 +38,6 @@ resource "oci_core_instance" "instancia_oci" {
   source_details {
     source_type = "image"
     source_id   = data.oci_core_images.image_ubuntu.images[0].id
-  }
-
-  shape_config {
-    ocpus         = 1
-    memory_in_gbs = 6
   }
 
   metadata = {
